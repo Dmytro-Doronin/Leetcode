@@ -1,6 +1,5 @@
 var romanToInt = function(s) {
 
-    const arr = s.split('')
 
     let result = 0
 
@@ -14,8 +13,16 @@ var romanToInt = function(s) {
         M:1000,
     }
 
-    for(let i of arr) {
-        result += description[i]
+    for (let i = 0; i < s.length; i++) {
+        let currNum = description[s[i]]
+        let nextNum = description[s[i + 1]]
+
+        if (currNum < nextNum) {
+            result += nextNum - currNum
+            i++
+        } else {
+            result += currNum
+        }
     }
 
     return result
